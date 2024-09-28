@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters
-from handlers import start_handler, message_handler
+from handlers import photo_message_handler, start_handler, message_handler
 
 load_dotenv()
 
@@ -17,6 +17,7 @@ def main():
 
   app.add_handler(CommandHandler("start", start_handler.start))
   app.add_handler(MessageHandler(filters.TEXT, message_handler.text_message))
+  app.add_handler(MessageHandler(filters.PHOTO, photo_message_handler.photo_message))
 
   app.run_polling()
 
